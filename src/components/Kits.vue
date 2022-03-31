@@ -16,7 +16,7 @@
     <!-- kite sailor -->
     <div class="kite-sailor">
       <div class="image" :class="scrollSailor ? 'fadeInLeft' : ''">
-        <img src="../assets/2.svg" alt="kite Serving" />
+        <img src="../assets/1.png" alt="kite Serving" />
       </div>
       <div class="info-text" :class="scrollSailor ? 'fadeInRight' : ''">
         <h2>{{ $t("misc.windsurfing") }}</h2>
@@ -53,36 +53,50 @@
 export default {
   data() {
     return {
+      activeRoute: false,
       scrollSailor: false,
       scrollSailing: false,
       scrollAboutUs: false,
     };
   },
   created() {
-    window.addEventListener("scroll", this.checkScroll);
+    // window.addEventListener("scroll", this.checkScroll);
+    // this.checkRoute();
+  },
+  watch: {
+    // $route() {
+    //   this.checkRoute();
+    // },
   },
   methods: {
-    checkScroll() {
-      let sailing = document.querySelector(".sailing");
-      let kiteSailor = document.querySelector(".kite-sailor");
-      let aboutUs = document.querySelector(".about-us");
-
-      if (window.scrollY >= kiteSailor.offsetTop - 600) {
-        this.scrollSailor = true;
-      } else {
-        this.scrollSailor = false;
-      }
-      if (window.scrollY >= aboutUs.offsetTop - 600) {
-        this.scrollAboutUs = true;
-      } else {
-        this.scrollAboutUs = false;
-      }
-      if (window.scrollY >= sailing.offsetTop - 600) {
-        this.scrollSailing = true;
-      } else {
-        this.scrollSailing = false;
-      }
-    },
+    // checkRoute() {
+    //   console.log(this.$route.name);
+    //   if (this.$route.name === "Home") {
+    //     this.activeRoute = true;
+    //   }
+    // },
+    // checkScroll() {
+    //   let sailing = document.querySelector(".sailing");
+    //   let kiteSailor = document.querySelector(".kite-sailor");
+    //   let aboutUs = document.querySelector(".about-us");
+    //   if (this.activeRoute) {
+    //     if (window.scrollY >= kiteSailor.offsetTop - 600) {
+    //       this.scrollSailor = true;
+    //     } else {
+    //       this.scrollSailor = false;
+    //     }
+    //     if (window.scrollY >= aboutUs.offsetTop - 600) {
+    //       this.scrollAboutUs = true;
+    //     } else {
+    //       this.scrollAboutUs = false;
+    //     }
+    //     if (window.scrollY >= sailing.offsetTop - 600) {
+    //       this.scrollSailing = true;
+    //     } else {
+    //       this.scrollSailing = false;
+    //     }
+    //   }
+    // },
   },
 };
 </script>
@@ -115,7 +129,9 @@ export default {
   flex-basis: 50%;
 }
 
-.kite-serving .image img,
+.kite-sailor .image img {
+  transform: scalex(-1);
+}
 .sailing .image img {
   transform: scalex(-1);
 }
@@ -204,10 +220,11 @@ export default {
   }
 }
 .is-rtl {
+  .kite-sailor .image img,
   .sailing .image img {
     transform: scalex(1);
   }
-  .kite-sailor .image img,
+
   .about-us .image img {
     transform: scalex(-1);
   }

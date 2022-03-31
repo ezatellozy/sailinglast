@@ -29,13 +29,15 @@
     "interestedNews": "Interested News"
   },
   "inputs": {
+    "qualification": "Qualification",
+    "qualification_orgnization": "Qualification organization",
     "english_name": "Full Applicant Name in english",
     "arabic_name": "Full Applicant Name in arabic",
     "birthdate": "Birth of date",
     "gender": "Gender",
     "nationality": "Nationality",
     "identity_number": "Identity number",
-    "identity_type": "Identity type",
+    "identity_type": "National identity / Iqama",
     "identity_expiry": "Identity expiry",
     "chooseafileordropithere": "Choose a file or drop it here...",
     "fullname": "Full name ",

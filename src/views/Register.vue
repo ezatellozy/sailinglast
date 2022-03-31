@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="relative">
-      <base-card>
+      <small-card>
         <h3 class="text-primary font-bold text-center my-5 text-lg md:text-xl">
           Create an Account
         </h3>
@@ -126,7 +126,7 @@
           <p class="text-primary mx-2">Already have an account?</p>
           <a class="text-secondary" href="/login">Sign in Instead</a>
         </div>
-      </base-card>
+      </small-card>
     </div>
   </section>
 </template>

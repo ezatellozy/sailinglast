@@ -1,8 +1,8 @@
 <template>
   <section>
-    <loading v-if="loading" />
     <div class="relative container mx-auto">
       <base-card>
+        <loading v-if="loading" />
         <form-wizard
           v-if="items"
           color="#FFA408"
@@ -18,8 +18,9 @@
           <tab-content
             :title="$t('misc.personal_informartion')"
             icon="feather icon-info"
+            @beforeChange="updateProfile"
           >
-            <validation-observer v-slot="{ invalid }" ref="profileUpdate">
+            <validation-observer v-slot="{}" ref="profileUpdate">
               <div class="form-input">
                 <validation-provider
                   name="English name"
@@ -121,26 +122,6 @@
                   </p>
                 </validation-provider>
               </div>
-
-              <div class="flex justify-center">
-                <button
-                  class="border rounded-xl px-4 py-2 font-bold text-lg bg-secondary text-white border-secondary"
-                  :class="{
-                    'cursor-default': invalid,
-                  }"
-                  :disabled="invalid"
-                  @click="updateProfile"
-                >
-                  {{ $t("buttons.update_profile") }}
-                </button>
-              </div>
-            </validation-observer>
-          </tab-content>
-          <tab-content
-            :title="$t('misc.identity')"
-            icon="feather icon-file-text"
-          >
-            <validation-observer v-slot="{ invalid }">
               <div class="form-input">
                 <validation-provider
                   name="identity number"
@@ -201,7 +182,8 @@
                   </p>
                 </validation-provider>
               </div>
-              <div class="flex justify-center">
+
+              <!-- <div class="flex justify-center">
                 <button
                   class="border rounded-xl px-4 py-2 font-bold text-lg bg-secondary text-white border-secondary"
                   :class="{
@@ -210,16 +192,18 @@
                   :disabled="invalid"
                   @click="updateProfile"
                 >
-                  {{ $t("buttons.update_identity") }}
+                  {{ $t("buttons.update_profile") }}
                 </button>
-              </div>
+              </div> -->
             </validation-observer>
           </tab-content>
+
           <tab-content
             :title="$t('misc.personal_picture')"
             icon="feather icon-image"
+            @beforeChange="uploadPortrait"
           >
-            <validation-observer v-slot="{ invalid }">
+            <validation-observer v-slot="{}">
               <div class="form-input">
                 <validation-provider
                   name="file_portrait"
@@ -248,7 +232,7 @@
                 </validation-provider>
               </div>
 
-              <div class="flex justify-center">
+              <!-- <div class="flex justify-center">
                 <button
                   class="border rounded-xl px-4 py-2 font-bold text-lg bg-secondary text-white border-secondary"
                   :class="{
@@ -259,13 +243,95 @@
                 >
                   {{ $t("buttons.upload") }}
                 </button>
-              </div>
+              </div> -->
             </validation-observer>
           </tab-content>
           <tab-content
             :title="$t('misc.qualifications')"
             icon="feather icon-file-text"
           >
+            <validation-observer v-slot="{}">
+              <div class="form-input">
+                <validation-provider
+                  name="qualification"
+                  rules="required|min:3|max:80"
+                  v-slot="v"
+                >
+                  <div class="group">
+                    <!-- <font-awesome-icon class="icon" icon="fa-solid fa-user" /> -->
+                    <input
+                      type="text"
+                      name="qualification"
+                      v-model="qualificationTitle"
+                      :placeholder="$t('inputs.qualification')"
+                    />
+                  </div>
+                  <p class="text-red-500 flex mx-auto">
+                    {{ v.errors[0] }}
+                  </p>
+                </validation-provider>
+              </div>
+              <div class="form-input">
+                <validation-provider
+                  name="qualification orgnization"
+                  rules="required|min:3|max:80"
+                  v-slot="v"
+                >
+                  <div class="group">
+                    <!-- <font-awesome-icon class="icon" icon="fa-solid fa-user" /> -->
+                    <input
+                      type="text"
+                      name="qualification orgnization"
+                      v-model="qualificationOrg"
+                      :placeholder="$t('inputs.qualification_orgnization')"
+                    />
+                  </div>
+                  <p class="text-red-500 flex mx-auto">
+                    {{ v.errors[0] }}
+                  </p>
+                </validation-provider>
+              </div>
+              <div class="form-input">
+                <validation-provider
+                  name="file_portrait"
+                  rules="required|min:3|max:80"
+                  v-slot="v"
+                >
+                  <div class="image-holder mx-auto mb-4" v-if="file_portrait">
+                    <img class="w-full h-full" :src="preview" alt="image" />
+                  </div>
+                  <b-form-file
+                    @change="previewMainMedia($event)"
+                    name="file_portrait"
+                    v-model="file_portrait"
+                    :placeholder="'inputs.chooseafileordropithere'"
+                    drop-placeholder="Drop file here..."
+                  />
+
+                  <b-card-text class="text-sm text-primary my-1">
+                    <strong>{{
+                      file_portrait ? file_portrait.name : ""
+                    }}</strong>
+                  </b-card-text>
+                  <p class="text-red-500 flex mx-auto">
+                    {{ v.errors[0] }}
+                  </p>
+                </validation-provider>
+              </div>
+
+              <!-- <div class="flex justify-center">
+                <button
+                  class="border rounded-xl px-4 py-2 font-bold text-lg bg-secondary text-white border-secondary"
+                  :class="{
+                    'cursor-default': invalid,
+                  }"
+                  @click="uploadPortrait"
+                  :disabled="invalid"
+                >
+                  {{ $t("buttons.upload") }}
+                </button>
+              </div> -->
+            </validation-observer>
           </tab-content>
         </form-wizard>
       </base-card>
@@ -298,6 +364,8 @@ export default {
       identityExpiry: "",
       preview: null,
       identity_file: "",
+      qualificationTitle: "",
+      qualificationOrg: "",
       genderList: ["Male", "Female"],
     };
   },

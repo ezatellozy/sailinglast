@@ -11,7 +11,7 @@
       <p class="text-third leading-7 pt-4">{{ $t("misc.langingDesc") }}</p>
     </div>
     <div class="md:order-1 image w-full flex justify-end md:w-3/4 md:flex-1">
-      <img src="../assets/imgLand.svg" alt="landing" />
+      <img src="../assets/landing.png" alt="landing" />
     </div>
   </div>
 </template>

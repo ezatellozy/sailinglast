@@ -13,7 +13,7 @@
         </span>
         <router-link
           :to="{ name: 'Login' }"
-          class="px-1 text-secondary text-lg font-bold"
+          class="px-1 text-secondary text-lg"
           >{{ $t("buttons.login") }}</router-link
         >
         <span class="text-secondary text-lg font-bold">/</span>

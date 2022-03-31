@@ -4,8 +4,13 @@
     @click="switchLang"
     style="display: flex"
   >
-    <img :src="`/images/${lang}.png`" width="20" alt="" class="mx-1" />
-    <!-- <span class="w-2"></span> -->
+    <!-- <img
+      :src="require(`../assets/images/${lang}.png`)"
+      width="30"
+      alt=""
+      class="mx-1"
+    /> -->
+    <img src="" alt="" />
 
     <span class="text-white font-bold">{{ $t(`locales.${lang}`) }}</span>
   </div>

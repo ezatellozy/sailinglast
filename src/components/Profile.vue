@@ -1,12 +1,7 @@
 <template>
   <div class="relative">
     <div class="avatar" @click="profileMenu = !profileMenu">
-      <img
-        v-if="avatar"
-        class="w-full"
-        src="@/assets/images/galary.png"
-        alt=""
-      />
+      <img v-if="avatar" class="w-full" src="@/assets/member.png" alt="" />
       <span class="font-bold" v-else>{{ initialName }}</span>
     </div>
     <div

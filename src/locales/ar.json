@@ -30,13 +30,15 @@
     "interestedNews": "أخبار قد تهمك"
   },
   "inputs": {
+    "qualification": "المؤهل",
+    "qualification_orgnization": "الجهة المصدرة",
     "english_name": "الاسم بالكامل باللغة الانجليزية",
     "arabic_name": "الاسم بالكامل باللغة العربية",
     "birthdate": "تاريخ الميلاد",
     "gender": "الجنس",
     "nationality": "الجنسية",
     "identity_number": "رقم الهوية",
-    "identity_type": "نوع الهوية",
+    "identity_type": "هوية وطنية / إقامة",
     "identity_expiry": "تاريخ انتهاء الهوية",
     "fullname": "الإسم كامل",
     "email": "البريد الإلكتروني",
